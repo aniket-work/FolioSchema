@@ -1,0 +1,112 @@
+name: cedar_hollow_archive
+version: "0.3"
+description: >
+  Personal experiment. One file that says what needs treatment, what counts
+  as stable, what should be digitized next, and what is a pull risk.
+
+classes:
+  - name: Item
+    kind: fact
+    key: item_id
+    definition: One physical object. A volume, a print, or a tape. Not a box and not a patron.
+    properties:
+      - name: year_created
+        type: integer
+        definition: Year the object was made. Accession year is a different fact and is not stored here.
+      - name: condition_score
+        type: integer
+        definition: Observation on a 1 to 5 scale. 1 is failing. 5 is sound. This is not a decision.
+      - name: digitized
+        type: boolean
+        definition: True only when a usable surrogate file exists. A filename placeholder is false.
+      - name: handling_count
+        type: integer
+        definition: Times the object was pulled for a reader during the sample year.
+      - name: note
+        type: string
+        definition: Free text from the box label. The model does not score the words.
+    relationships:
+      - name: held_in
+        target: Collection
+        cardinality: many_to_one
+      - name: stored_at
+        target: Location
+        cardinality: many_to_one
+      - name: recorded_as
+        target: Format
+        cardinality: many_to_one
+
+  - name: Collection
+    kind: dimension
+    key: collection_id
+    definition: A named group of objects that share a provenance story in this sample.
+    properties:
+      - name: title
+        type: string
+        definition: Short name I use in the brief.
+
+  - name: Location
+    kind: dimension
+    key: location_id
+    definition: Where the object sits in the fictional building.
+    properties:
+      - name: title
+        type: string
+        definition: Vault, reading room, or cold room.
+      - name: climate
+        type: string
+        definition: controlled, open, or cold. A label, not a sensor feed.
+
+  - name: Format
+    kind: dimension
+    key: format_id
+    definition: The physical carrier. Paper, photograph, or magnetic tape.
+    properties:
+      - name: title
+        type: string
+        definition: Carrier name.
+
+metrics:
+  - name: NeedsTreatment
+    grain: Item
+    definition: Condition score is 2 or lower. Score 3 is watched, not queued.
+    rule:
+      type: at_most
+      property: condition_score
+      maximum: 2
+  - name: Stable
+    grain: Item
+    definition: Condition score is 4 or higher.
+    rule:
+      type: at_least
+      property: condition_score
+      minimum: 4
+  - name: DigitizeNext
+    grain: Item
+    definition: >
+      No usable surrogate, and either the score is 3 or lower or the object
+      was made in 1940 or earlier.
+    rule:
+      type: undigitized_and
+      property_flag: digitized
+      score: condition_score
+      score_maximum: 3
+      year: year_created
+      year_maximum: 1940
+  - name: PullRisk
+    grain: Item
+    definition: Pulled at least five times in the sample year while the score is 3 or lower.
+    rule:
+      type: both_bounds
+      low_property: condition_score
+      low_maximum: 3
+      high_property: handling_count
+      high_minimum: 5
+
+constraints:
+  - name: score_range
+    prose: condition_score is an integer from 1 through 5.
+  - name: year_window
+    prose: year_created is from 1800 through 2020.
+  - name: pulls_nonnegative
+    prose: handling_count is zero or greater.

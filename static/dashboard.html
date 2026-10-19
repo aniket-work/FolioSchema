@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>FolioSchema brief</title>
+  <style>
+    body { font-family: Georgia, serif; margin: 2rem auto; max-width: 720px; color: #1c2430; }
+    h1 { font-size: 1.4rem; }
+    table { border-collapse: collapse; width: 100%; }
+    td, th { text-align: left; padding: 0.35rem 0.5rem; border-bottom: 1px solid #d5dde6; }
+  </style>
+</head>
+<body>
+  <h1>FolioSchema — Cedar Hollow brief</h1>
+  <p id="summary">Loading the same report the CLI prints.</p>
+  <table id="rates">
+    <thead><tr><th>Collection</th><th>Needs treatment</th><th>Rate</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <script>
+    fetch("/api/brief").then((res) => res.json()).then((data) => {
+      const rate = (data.treatment_rate * 100).toFixed(1);
+      document.getElementById("summary").textContent =
+        data.items + " items, treatment rate " + rate + "%, open first " + data.worst_collection;
+      const body = document.querySelector("#rates tbody");
+      data.by_collection.forEach((row) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = "<td>" + row.collection_id + "</td><td>" +
+          row.needs_treatment + "/" + row.items + "</td><td>" +
+          Math.round(row.rate * 100) + "%</td>";
+        body.appendChild(tr);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+{
+  "collections": [
+    {"collection_id": "COL-MINUTES", "title": "Town council minutes"},
+    {"collection_id": "COL-PHOTO", "title": "Flood photographs"},
+    {"collection_id": "COL-TAPE", "title": "Oral history tapes"}
+  ],
+  "locations": [
+    {"location_id": "LOC-VAULT", "title": "Vault", "climate": "controlled"},
+    {"location_id": "LOC-READ", "title": "Reading room", "climate": "open"},
+    {"location_id": "LOC-COLD", "title": "Cold room", "climate": "cold"}
+  ],
+  "formats": [
+    {"format_id": "FMT-PAPER", "title": "Paper"},
+    {"format_id": "FMT-PHOTO", "title": "Photograph"},
+    {"format_id": "FMT-TAPE", "title": "Magnetic tape"}
+  ],
+  "items": [
+    {
+      "item_id": "IT-01",
+      "held_in": "COL-MINUTES",
+      "stored_at": "LOC-VAULT",
+      "recorded_as": "FMT-PAPER",
+      "year_created": 1924,
+      "condition_score": 3,
+      "digitized": false,
+      "handling_count": 4,
+      "note": "foxing along the gutter"
+    },
+    {
+      "item_id": "IT-02",
+      "held_in": "COL-MINUTES",
+      "stored_at": "LOC-VAULT",
+      "recorded_as": "FMT-PAPER",
+      "year_created": 1948,
+      "condition_score": 4,
+      "digitized": true,
+      "handling_count": 1,
+      "note": ""
+    },
+    {
+      "item_id": "IT-03",
+      "held_in": "COL-MINUTES",
+      "stored_at": "LOC-READ",
+      "recorded_as": "FMT-PAPER",
+      "year_created": 1962,
+      "condition_score": 5,
+      "digitized": true,
+      "handling_count": 8,
+      "note": ""
+    },
+    {
+      "item_id": "IT-04",
+      "held_in": "COL-MINUTES",
+      "stored_at": "LOC-VAULT",
+      "recorded_as": "FMT-PAPER",
+      "year_created": 1911,
+      "condition_score": 1,
+      "digitized": false,
+      "handling_count": 2,
+      "note": "brittle leaves"
+    },
+    {
+      "item_id": "IT-05",
+      "held_in": "COL-PHOTO",
+      "stored_at": "LOC-COLD",
+      "recorded_as": "FMT-PHOTO",
+      "year_created": 1937,
+      "condition_score": 2,
+      "digitized": false,
+      "handling_count": 3,
+      "note": "curl at the corners"
+    },
+    {
+      "item_id": "IT-06",
+      "held_in": "COL-PHOTO",
+      "stored_at": "LOC-COLD",
+      "recorded_as": "FMT-PHOTO",
+      "year_created": 1955,
+      "condition_score": 4,
+      "digitized": true,
+      "handling_count": 1,
+      "note": ""
+    },
+    {
+      "item_id": "IT-07",
+      "held_in": "COL-PHOTO",
+      "stored_at": "LOC-READ",
+      "recorded_as": "FMT-PHOTO",
+      "year_created": 1978,
+      "condition_score": 5,
+      "digitized": false,
+      "handling_count": 6,
+      "note": ""
+    },
+    {
+      "item_id": "IT-08",
+      "held_in": "COL-PHOTO",
+      "stored_at": "LOC-COLD",
+      "recorded_as": "FMT-PHOTO",
+      "year_created": 1941,
+      "condition_score": 1,
+      "digitized": false,
+      "handling_count": 0,
+      "note": "silvering across the sky"
+    },
+    {
+      "item_id": "IT-09",
+      "held_in": "COL-TAPE",
+      "stored_at": "LOC-COLD",
+      "recorded_as": "FMT-TAPE",
+      "year_created": 1972,
+      "condition_score": 2,
+      "digitized": false,
+      "handling_count": 5,
+      "note": "sticky shed on the pack"
+    },
+    {
+      "item_id": "IT-10",
+      "held_in": "COL-TAPE",
+      "stored_at": "LOC-COLD",
+      "recorded_as": "FMT-TAPE",
+      "year_created": 1980,
+      "condition_score": 2,
+      "digitized": false,
+      "handling_count": 2,
+      "note": ""
+    },
+    {
+      "item_id": "IT-11",
+      "held_in": "COL-TAPE",
+      "stored_at": "LOC-VAULT",
+      "recorded_as": "FMT-TAPE",
+      "year_created": 1968,
+      "condition_score": 4,
+      "digitized": true,
+      "handling_count": 1,
+      "note": ""
+    },
+    {
+      "item_id": "IT-12",
+      "held_in": "COL-TAPE",
+      "stored_at": "LOC-COLD",
+      "recorded_as": "FMT-TAPE",
+      "year_created": 1975,
+      "condition_score": 1,
+      "digitized": false,
+      "handling_count": 7,
+      "note": "oxide shed in the box"
+    }
+  ]
+}
